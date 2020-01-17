@@ -1,0 +1,40 @@
+<messaging:emailTemplate subject="Work Item {!relatedTo.Name} assignation" recipientType="Contact" relatedToType="Work_Item__c">
+<messaging:htmlEmailBody >
+<html>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+td:hover {
+  background-color: #D3D3D3;
+}
+</style>
+<body>
+<h2>You were assigned the following Work Item:</h2>
+<table style="width:100%">
+    <tr>
+        <td>Name: {!relatedTo.Name}</td>
+    </tr>
+    <tr>
+        <td>Title: {!relatedTo.Title__c}</td>
+    </tr>
+    <tr>
+        <td>Description: {!relatedTo.Description__c}</td>
+    </tr>
+</table>
+<br></br>
+<p>You can check your new Item&nbsp;<apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}">here</apex:outputlink>
+</p> 
+</body>
+</html>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
