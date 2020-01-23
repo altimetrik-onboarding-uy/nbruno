@@ -2,8 +2,8 @@
 private class WorkItemOverdueScheduleTest {
     @testSetup static void setup() {
         List<Work_Item__c> workItemsList = new List<Work_Item__c>();
-        Work_Item__c workItem1 = new Work_Item__c(Estimated_End_Date__c = Date.today().addDays(1), Status__c = 'New');
-        Work_Item__c workItem2 = new Work_Item__c(Estimated_End_Date__c = Date.today().addDays(2), Status__c = 'New');
+        Work_Item__c workItem1 = new Work_Item__c(Estimated_End_Date__c = Date.today().addDays(-1), Status__c = 'New');
+        Work_Item__c workItem2 = new Work_Item__c(Estimated_End_Date__c = Date.today().addDays(-2), Status__c = 'New');
         workItemsList.add(workItem1);
         workItemsList.add(workItem2);
         insert workItemsList;
@@ -30,7 +30,7 @@ private class WorkItemOverdueScheduleTest {
         test.startTest();
 
         String status = 'Done';
-        List<Work_Item__c> workItemsList = [SELECT Id, Name, Title__c, Estimated_End_Date__c, Status__c FROM Work_Item__c WHERE Estimated_End_Date__c >= TODAY AND Status__c != :status]; 
+        List<Work_Item__c> workItemsList = [SELECT Id, Name, Title__c, Estimated_End_Date__c, Status__c FROM Work_Item__c WHERE Estimated_End_Date__c <= TODAY AND Status__c != :status]; 
         
         Test.stopTest();
 

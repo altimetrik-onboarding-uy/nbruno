@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event fired whenever an item is dropped on a column">
+    <aura:attribute type="String" name="title"></aura:attribute> 
+    <aura:attribute type="Work_Item__c" name="item"></aura:attribute>
+</aura:event>

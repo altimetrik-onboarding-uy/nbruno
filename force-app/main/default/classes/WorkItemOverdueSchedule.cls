@@ -10,7 +10,7 @@ public with sharing class WorkItemOverdueSchedule implements Schedulable {
     }
 
     public static List<Work_Item__c> getOverdueItems(){
-        List<Work_Item__c> overdueWorkItems = [SELECT Id, Name, Title__c, Estimated_End_Date__c, Status__c FROM Work_Item__c WHERE Estimated_End_Date__c >= TODAY AND Status__c != 'Done'];
+        List<Work_Item__c> overdueWorkItems = [SELECT Id, Name, Title__c, Estimated_End_Date__c, Status__c FROM Work_Item__c WHERE Estimated_End_Date__c <= TODAY AND Status__c != 'Done'];
         return overdueWorkItems;
             
     }
