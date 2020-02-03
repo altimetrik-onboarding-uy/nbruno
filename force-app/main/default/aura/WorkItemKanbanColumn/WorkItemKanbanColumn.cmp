@@ -1,0 +1,25 @@
+<aura:component controller="WorkItemKanbanController">
+    <aura:attribute name="title" Type="String"/>
+    <aura:attribute name="workItemList" Type="List"/>
+    <aura:attribute name="filteredList" Type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:WorkItemKanbanRefresh" action="{!c.refreshList}"/>
+
+    <aura:registerEvent name="elementDrop" type="c:WorkItemKanbanChange"/>
+
+        <div class="slds-col slds-size_1-of-4 slds-box slds-box_small slds-theme_shade slds-theme_alert-texture" ondrop="{!c.onDrop}" ondragover="{!c.allowDrop}">
+            <span>
+                <lightning:layoutItem padding="around-medium">
+                    <div class="slds-p-top_none slds-p-bottom_medium slds-text-heading_large slds-align_absolute-center">
+                        <h2>{!v.title}</h2>
+                    </div>
+                    <aura:iteration items="{!v.filteredList}" var="item">
+                        <aura:if isTrue="{!item.Status__c == v.title}">
+                            <c:WorkItemKanbanElement workItem = "{!item}"/>
+                        </aura:if>
+                    </aura:iteration>
+                </lightning:layoutItem>                    
+            </span>
+        </div>
+
+</aura:component>

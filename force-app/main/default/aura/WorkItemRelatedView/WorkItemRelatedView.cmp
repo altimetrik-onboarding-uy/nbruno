@@ -1,0 +1,46 @@
+<aura:component controller="WorkItemViewController" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+    <aura:attribute name="data" type="List" />
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="showConfirmDialog" type="boolean" default="false"/>
+    <aura:attribute name="rowInfo" type="Object"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="force:showToast" action="{!c.refreshView}"/>
+
+    <aura:if isTrue="{!not(empty(v.data))}">
+    <lightning:card>
+        <aura:set attribute="title">
+            <lightning:icon iconName="custom:custom19" size="small"/>
+            Related Work Items
+        </aura:set>
+    <lightning:datatable
+                keyField="id"
+                data="{! v.data }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"
+                onrowaction="{! c.handleRowAction }"/>
+    </lightning:card>
+    </aura:if>
+
+    <aura:if isTrue="{!v.showConfirmDialog}">
+            <div role="dialog" class="slds-modal slds-fade-in-open ">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h1 class="slds-text-heading--medium">Confirmation</h1>
+                    </header>
+                     
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <center><b>Are you sure you want to delete this item?</b></center>
+                    </div>
+                     
+                    <footer class="slds-modal__footer">
+                        <lightning:button name='No' label='No' onclick='{!c.handleConfirmDialogNo}'/>
+                        <lightning:button variant="brand" name='Yes' label='Yes' onclick='{!c.handleConfirmDialogYes}'/>
+                    </footer>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop--open"></div>            
+        </aura:if>
+
+</aura:component>	

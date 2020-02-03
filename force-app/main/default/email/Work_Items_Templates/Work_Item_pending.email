@@ -1,0 +1,25 @@
+<messaging:emailTemplate subject="Overdue Work Items" recipientType="User" relatedToType="Work_Item__c">
+<messaging:htmlEmailBody >
+<html>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+td:hover {
+  background-color: #D3D3D3;
+}
+</style>
+<body>
+</body>
+</html>
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

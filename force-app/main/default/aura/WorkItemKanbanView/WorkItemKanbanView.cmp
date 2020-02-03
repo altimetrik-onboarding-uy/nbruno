@@ -1,0 +1,15 @@
+<aura:component controller="WorkItemKanbanController" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="titleList" Type="List"/>
+    <aura:attribute name="workItemList" Type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="elementDrop" event="c:WorkItemKanbanChange" action="{!c.workItemDropped}"/>
+
+    <aura:registerEvent name="listRefresh" type="c:WorkItemKanbanRefresh"/>
+    
+    <lightning:layout>
+    <aura:iteration items="{!v.titleList}" var="columnTitle">
+            <c:WorkItemKanbanColumn workItemList="{!v.workItemList}" title="{!columnTitle}"/>
+    </aura:iteration>
+    </lightning:layout>
+
+</aura:component>

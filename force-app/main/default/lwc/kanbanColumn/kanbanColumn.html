@@ -1,0 +1,16 @@
+<template>
+    <lightning-layout>
+        <div class="slds-col slds-size_1-of-4 slds-box slds-box_small slds-theme_shade slds-theme_alert-texture" ondrop={onDrop} ondragover={allowDrop}>
+            <span>
+                <lightning-layout-item padding="around-medium">
+                    <div class="slds-p-top_none slds-p-bottom_medium slds-text-heading_large slds-align_absolute-center">
+                        <h2>{title}</h2>
+                    </div>
+                    <template for:each={filteredList} for:item='item'>
+                        <c-kanban-element work-item={item} key={item.id}></c-kanban-element>
+                    </template>
+                </lightning-layout-item>                    
+            </span>
+        </div>
+    </lightning-layout>
+</template>

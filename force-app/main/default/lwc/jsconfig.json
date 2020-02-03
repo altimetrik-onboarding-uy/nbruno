@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/kanbanColumn": [
+                "kanbanColumn/kanbanColumn.js"
+            ],
+            "c/kanbanElement": [
+                "kanbanElement/kanbanElement.js"
+            ],
+            "c/kanbanView": [
+                "kanbanView/kanbanView.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

@@ -1,0 +1,5 @@
+<template>
+    <template for:each={picklistValues} for:item='item'>
+        <c-kanban-column work-item-list={workItemList} title={item.label} key={item.id}></c-kanban-column>
+    </template>
+</template>

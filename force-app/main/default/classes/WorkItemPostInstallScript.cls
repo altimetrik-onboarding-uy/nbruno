@@ -1,0 +1,18 @@
+global class WorkItemPostInstallScript implements InstallHandler {
+    global void onInstall(InstallContext context) {
+        if(context.previousVersion() == null) {
+            WorkItemOverdueSchedule scheduleJob = new WorkItemOverdueSchedule();
+            String scheduleContext = '0 0 0 * * ?';
+            String jobID = system.schedule('Work Items Overdue Schedule', scheduleContext, scheduleJob);
+        }
+        else{
+            //Placeholder if operation is not install
+        }
+        if(context.isUpgrade()) {
+            //Placeholder for action if updating
+        }
+        if(context.isPush()) {
+            //Placeholder if action is push
+        }
+    }
+}
