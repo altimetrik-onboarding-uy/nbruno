@@ -1,0 +1,37 @@
+<template>
+    <lightning-card>
+        <div slot="title">
+            <h2>
+                <lightning-helptext content={helpText}></lightning-helptext>
+                <div if:true={fixType}>
+                    <lightning-icon icon-name="custom:custom19" size="large" class="slds-m-right_medium" alternative-text="Fix"></lightning-icon>
+                </div>
+                <div if:true={ideaType}>
+                    <lightning-icon icon-name="custom:custom55" size="large" class="slds-m-right_medium" alternative-text="Idea"></lightning-icon>
+                </div>
+                <div if:true={actionType}>
+                    <lightning-icon icon-name="custom:custom83" size="large" class="slds-m-right_medium" alternative-text="Idea"></lightning-icon>
+                </div>
+                <a onclick={editRecord}>{workItem.Title__c}</a>
+            </h2>
+        </div>
+        
+        <p class="slds-p-horizontal_small">Difficulty: {workItem.Difficulty__c}</p>
+        
+        <div slot="footer">
+            <div if:true={isOverdue}>   
+                <div class="slds-text-color_success">
+                    Item is not overdue 
+                    <lightning-icon icon-name="action:approval" size="small"></lightning-icon>
+                </div>    
+            </div>
+                
+            <div if:false={isOverdue}>  
+                <div class="slds-text-color_error">
+                    This item is overdue 
+                    <lightning-icon icon-name="action:close" size="small"></lightning-icon>
+                </div>    
+            </div>
+        </div>
+    </lightning-card>
+</template>

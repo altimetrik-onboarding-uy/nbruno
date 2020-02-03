@@ -1,0 +1,15 @@
+@isTest
+private class WorkItemPostInstallScriptTest {
+    @isTest
+    static void testPostInstall() {
+        test.startTest();
+
+        WorkItemPostInstallScript postinstall = new WorkItemPostInstallScript();
+        Test.testInstall(postinstall, null);
+        Test.testInstall(postinstall, new Version(1,0));
+        List<AsyncApexJob> scheduledJobs = [SELECT Id FROM AsyncApexJob WHERE JobType IN ('ScheduledApex') AND Status != 'Aborted'];
+        system.assertEquals(1,scheduledJobs.size(),'Schedule job not found');
+
+        test.stopTest();
+    }
+}

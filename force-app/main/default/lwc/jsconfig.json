@@ -2,7 +2,17 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "c/kanbanColumn": [
+                "kanbanColumn/kanbanColumn.js"
+            ],
+            "c/kanbanElement": [
+                "kanbanElement/kanbanElement.js"
+            ],
+            "c/kanbanView": [
+                "kanbanView/kanbanView.js"
+            ]
+        }
     },
     "include": [
         "**/*",

@@ -7,7 +7,7 @@
     workItemDropped : function(component, event, helper){
         let title = event.getParam("title");
         let item = event.getParam("item");
-        helper.updateStatus(component, item, title);
+        helper.updateStatus(component, event, item, title);
         
     }
 

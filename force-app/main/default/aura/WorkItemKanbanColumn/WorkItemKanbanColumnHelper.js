@@ -19,5 +19,37 @@
             component.set("v.filteredList",doneItemList);
         }
     },
- 
+
+    dropElement : function(component, event) {
+        event.preventDefault();
+        let dropEvent = component.getEvent("elementDrop");
+        dropEvent.setParams({
+            'title': component.get('v.title'),
+            'item': JSON.parse(event.dataTransfer.getData('text'))
+        });
+        dropEvent.fire();
+    },
+
+    eventRefresh : function(component, event){
+        let updatedItemList = component.get("v.workItemList");
+        let title = event.getParam("title");
+        let item = event.getParam("item");
+        let actualItem = updatedItemList.find(function(el) { return el.Id === item.Id; });
+        if (actualItem) {
+            actualItem.Status__c = title;
+            component.set("v.workItemList",updatedItemList);
+            this.setColumn(component);
+        } else {
+            this.showToast("error","Something went wrong! Please contact your System Admin");
+        }
+    },
+
+    showToast : function(type, message) {
+        var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({
+            "type": type,
+            "message": message
+        });
+        toastEvent.fire();
+    },
 })

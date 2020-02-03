@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <content>Work_Items_Home</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>App used to track employees working time via Work Items</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Work Manager</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>Work_Item__c</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>Kanban</tabs>
+    <tabs>Web_Kanban</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Work_Manager_UtilityBar</utilityBar>
+</CustomApplication>

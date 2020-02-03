@@ -1,7 +1,12 @@
 public with sharing class WorkItemKanbanController {
     @AuraEnabled
     public static List<Work_Item__c> getWorkItems() {
-        return [SELECT Id, Title__c, Difficulty__c, Status__c, Start_Date__c, Estimated_End_Date__c, RecordTypeId, RecordType.Name FROM Work_Item__c WHERE Start_Date__c >= LAST_N_DAYS:30];
+        if (Schema.sObjectType.Work_Item__c.isAccessible()) {
+            return [SELECT Id, Title__c, Difficulty__c, Status__c, Start_Date__c, Estimated_End_Date__c, RecordTypeId, RecordType.Name FROM Work_Item__c WHERE Start_Date__c >= LAST_N_DAYS:30];
+        }
+        else {
+            return NULL;
+        }
     }
     @AuraEnabled
     public static Boolean itemIsOverdue(Work_Item__c workItem) {
@@ -16,8 +21,10 @@ public with sharing class WorkItemKanbanController {
     @AuraEnabled
     public static void updateStatus(Work_Item__c workItem, String status) {
         try {
-            workItem.Status__c = status;
-            update workItem;  
+            if (Schema.sObjectType.Work_Item__c.fields.Status__c.isUpdateable()){
+                workItem.Status__c = status;
+                update workItem; 
+            } 
         } catch(DmlException e) {
             System.debug('The following exception has occurred: ' + e.getMessage());
         }

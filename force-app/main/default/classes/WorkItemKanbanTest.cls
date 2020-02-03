@@ -46,4 +46,11 @@ private class WorkItemKanbanTest {
 
         System.assertEquals(workItem1.Status__c,'Done', 'Status does not match');
     }
+
+    @isTest
+    public static void getStatusValues() {
+
+        System.assertEquals(WorkItemKanbanController.getPicklistValues().size(), 4, 'Value number not matching');
+
+    }
 }
